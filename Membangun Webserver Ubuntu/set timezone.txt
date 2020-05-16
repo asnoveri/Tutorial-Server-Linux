@@ -1,0 +1,20 @@
+#cara melihat seluruh user
+ 1. masuk ke dirketory home,
+ 2. pada direktory home bisa dilihat seluruh dirketory yang terdaftar di sistem 
+	
+#cara menambahkan user
+	1. adduser veri
+	2  usermod -aG sudo veri -> memasukan user kedalam grup sudo
+
+
+# cara meghapus user
+ 1. deluser nama-User
+ 2. deluser --remove-home nama_user -> hapus user dan direktorynya
+
+
+#cara set time zone.
+1. sudo timedatectl set-timezone Asia/Jakarta
+2 masuk /etc, nano timezone
+
+#cek versi ubuntu
+1.lsb_release -a

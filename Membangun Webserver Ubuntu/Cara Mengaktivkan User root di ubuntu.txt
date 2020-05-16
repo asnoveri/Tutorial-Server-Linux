@@ -1,0 +1,7 @@
+#mengkatifkan user root di ubuntu
+ 1. Masuk Kemode root-> sudo -i
+ 2. masukan perintah passwd, dan isikan password untuk root
+ 3. tes akses ssh dengan root
+ 4. jika akses di tolak, maka seting sshd_config, pada folder     etc/ssh, dan lakukan configurasi berikut:
+    -ubah pada bagian Autentication -> permitrootlogin menjadi yes
+ 5. dan tes login dari komputer client

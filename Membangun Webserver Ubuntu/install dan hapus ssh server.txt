@@ -1,0 +1,24 @@
+#apa itu ssh server=>ssh server merupakan aplikasi yang menerima request dari client,yang bertugas mendeskripsi enkripsi client dan mengjalankan printah yang di instruksikan client. SSH Server  Berjalan pada port 22 dengan TCP Koneksi. Selain itu SSH Juga  bisa  di pakai untuk melakukan pertukaran data seperti FTP,   dengan menggunkan sfpt:// SSH Server dapat berjalan layaknya FTP   dengan Secure.
+
+# apa itu ssh client =>SSH Client adalah software atau aplikasi yang digunakan untuk melakukan request pada server, SSH Client memiliki interface langsung apa client berupa Command Line.
+     Contoh Software SSH Client :
+      -Putty
+      -WinSCP	
+
+
+#Hapus ssh
+ 1. sudo apt remove openssh-server -> buat hapus ssh
+
+#Instal & Seting SSh Server
+#instal ssh server dgn configurasi standar.
+ 1. sudo apt install openssh-server -> untuk instal service ssh     server, 
+    
+ 2. sudo service ssh status -> untuk melihat status ssh
+ 3. sudo service ssh start atau sudo service ssh --full-restart ->     untuk menrestar ssh
+ 4. tes akses server dari cmd windows : ssh asno@127.0.0.1 atau
+ 5. jika portnya tidak port default,  ssh asno@127.0.0.1 -p 50000
+
+
+# install ssh client
+ 1. sudo apt install openssh-client =>untuk di linux
+    

@@ -1,0 +1,84 @@
+#Membuat shh key
+	ssh key terbagai dua:
+		1. public key  => diletakkan di server
+		2. private key => diletakkan di client yang akan 		   meremote server.
+
+#Membuat ssh key di windows
+ -gunakan aplikasi putty generator
+	1. Buka aplikasi putty generator
+	2. pilih type of key generator
+	3. ubah number of bits jikan di inginkan
+	4. masukan passpharse, jika diinginkna,(digunakan untuk pada akses server dengan sshkey kita dimntai pass )
+	5. klik generate, 
+	6. dan simpan public key dan private key ke kompoter lokal
+	7. dan masukkan public key komputer server
+
+
+
+#Membuat ssh key di linux
+1. ssh-keygen ->perintah normal
+2. jika eror gunakan perintah berikut-> ssh-keygen -C "namakita"
+3. simpanh ssh keynya, misal di -> home/asno/.ssh/key-asno
+4. jikan ingin mengunakan passpharse-> isikan passnya (digunakan untuk pada akses server dengan sshkey kita dimntai pass )
+4. kopikan public key server. 
+
+
+#cara menambahkan public key ke server 
+#lewat windows
+1.masuk ke server kita
+2.buat fille (authorized_keys)  baru  di direktory /home/asno/.ssh/
+dan jika direktori .sshnya belum ada, buat folder .ssh dengan cara, mkdir, dan masukan public keynya ke file(authorized_keys)
+ubh chom 700 .ssh, ubh chmod 600 authorized_keys
+
+#lewat linux
+1. jalankan perintah berikut
+	ssh-copy-id -i .ssh/key-namkey user@ipserver
+
+
+
+#agar sshkeynya agar lebih aman lebih atur seprti dibawah
+1.edit file sshd_config, di direktory /etc/ssh/ dan ubah pubkeyAuthentication yes.
+2. dan jika ingin merubah port silahkan ubah port file sshd_config, di direktory /etc/ssh/ 
+3. edit file sshd_config, di direktory /etc/ssh/ dan hidupkan AuthorizedKeysfile,
+4 edit file sshd_config, di direktory /etc/ssh/ dan hidupkan
+PasswordAuthentication no
+
+keterangan :
+	.pubkeyAuthentication-> dihidupkan untuk login mengunakan public key
+	.Authrizedkeysfile-> digunakan untuk menjlankan public key yang di copykan ke file authorized_keys
+	.PasswordAuthentication no-> digunakan unutk menolak akses dengan password
+	.PermitRootLogin-> melarang root login
+
+
+
+
+#cara akses server dengan sshkey di windows
+1. gunakan aplikasi putty
+2. isikan hostname ip server dan port pada menu session
+3. dan klik save.
+3. pilih menu connection, masuk ke menu data, isikan username pada Auto-login username, ex: asno
+4. pilih menu connection
+5. pilih menu ssh
+6. klik ssh
+7. dan klik browser tempat penyimpanan private key
+
+
+
+#cara akses server dengan sshkey di linux atau max
+1. buat file config di direktory home/asno/.ssh/config
+2  isikan file config dengan code berikut:
+	Host*
+	 IdentitiesOnly=yes
+	Host asno
+	HostName 103.16.133.242
+	IdentityFile ~/.ssh/key-asno	
+	Port 22
+	User asno
+    keterangan:
+	#Host nama_digunakan_untuk_akses_server 	
+	#HostName ip_server
+	#IdentityFile ~/direktorypenyimpanan_fileprivetkey
+	#Port yang di configurasikan pada sshd_config server
+	#User user_yang_digunakan_untuk_mengkases
+3. konek keserver dengan mengunakan nama host tadi,
+   misalkan, ssh asno	

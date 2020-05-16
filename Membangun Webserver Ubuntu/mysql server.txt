@@ -1,0 +1,31 @@
+# cara melihat daftar user di mysql
+1. lihat selurh database, show databases;
+2. pilih database yang ingin dilihat, use mysql;
+3  pilih tabel dan lihat strukut tabel, DESCRIBE user;
+4. masukan perintah berikut jika ingin melihat isi tabel
+	SELECT user,host,password FROM mysql.user;
+
+
+# cara melihat hak akses user di mysql
+1. SHOW GRANTS FOR 'asno'@'localhost';
+2  atau SHOW GRANTS FOR 'asno'@'localhost'\G-> tanpa titk koma karena titk koma sudah diganitikan \G
+
+#cara edit dan hapus katasandi user di mysql
+1. edit password untuk user yang bukan root, yang di edit oleh root.
+	set password for asno@'localhost' = password('Yupo12345');
+2 edit password untuk userdari user itu sendiri 
+	SET PASSWORD=PASSWORD('asno');
+
+# cara hapus user mysql
+ DROP USER asno;
+
+
+#cara exsport database di mysql;
+1. untuk satu tabel-> mysqldump -u namauser -p namadatabase > /direktory_penyimpanan/namadbexsport.sql
+
+#cara exsport database;
+1. mysql -u root -p nama_db < /direktory_penyimpanan/namafile.sql
+
+
+# cara melihat struktu table di mysql
+1. DESCRIBE namatabel;

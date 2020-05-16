@@ -1,0 +1,6 @@
+#install composer
+ 1. apt install curl php7.4-cli php7.4-mbstring git unzip -y
+ 2. curl -sS https://getcomposer.org/installer | php
+ 3. pindahkan komposer ke direktory berikut:
+	mv composer.phar /usr/local/bin/composer
+ 4. tes composer dengan memasukan: composer

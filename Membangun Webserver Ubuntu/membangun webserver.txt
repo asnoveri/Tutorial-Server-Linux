@@ -1,0 +1,195 @@
+# gunaka sudo su untuk berjalan sebagai root
+#set ip public server
+ 1. akses file berikut
+	.ubuntu server 16.04 /etc/network/interfaces
+	.ubuntu server 18.04 /etc/netplan/50-cloud-init.yaml
+ 2. masukan konfigurasi berikut
+  .configurasi untuk dhcp/ ip dinamis	
+	network:
+    ethernets:
+        enp0s3:
+            addresses: []
+            dhcp4: true
+            optional: true
+    version: 2
+  .configurasi untuk ip statis
+	network:
+    ethernets:
+        enp0s3:
+            addresses: [192.168.1.2/24]
+            gateway4: 192.168.1.1
+            nameservers:
+              addresses: [8.8.8.8,8.8.4.4]
+            dhcp4: no
+    version: 2	
+ . keterangan configurasi diatas:
+   .enp0s3: nama network interface, cara mengecek namanya pakai     perintah ip addr.
+   .addresses: IP address yang diberikan dengan subnet /24 (255.255.255.0)
+   .nameservers – addresess: IP address untuk dns resolver, di     sini memakai DNS dari Google.
+   .dhcp4: diisi dengan no jika tidak memakai DHCP. Jika     memakai DHCP, semua IP address tidak usah dimasukkan.		
+ 3. Aktifkan ip addres yang baru disetting
+   . netplan apply	
+   . netplan --debug apply
+   . service network-manager restart	
+
+# install ssh
+
+# configurasi ssh
+
+# set ssh key
+
+# set timezone
+
+# install apache
+  1. masukan perintah: apt install apache2 -y
+  2. cek verison apache: apache2 -v
+  3. restart service apache2: apache2 start
+  4. cek status apache2:  service apache2 start
+  5. cek di browser, jika tampil berarti ok	
+	
+
+# buat virtual host untuk banyak website,domanin,subdomain
+ 1. buat direktory dokumen root(eo.pkr.ac.id): mkdir /var/www/eo.pkr.ac.id
+ 2. buat file index untuk percobaan.
+ 3. buat directory penyimpanan configurasi virtual host    (eo.pkr.ac.id):
+  -akses direktory berikut :/etc/apache2/sites-available
+  -dan buat. nano file eo.pkr.ac.id.conf
+  - isikan,
+	<VirtualHost *:80>
+          ServerName eo.pkr.ac.id
+          ServerAlias www.eo.pkr.ac.id
+          DocumentRoot /var/www/eo.pkr.ac.id
+          <Directory /var/log/apache2/eo.pkr.ac.id>
+            Options Indexes FollowSymlinks Multiviews
+            AllowOverride All
+            Require all granted
+          </Directory>
+          ErrorLog /var/log/apache2/eo.pkr.ac.id_error.log
+          CustomLog /var/log/apache2/eo.pkr.ac.id_access.log combined
+        </VirtualHost>
+
+   Keterangan:
+	<VirtualHost * :80>-> aplikasi berjalan di port 80
+	   ServerName eo.pkr.ac.id->nama domain
+	   ServerAlias www.eo.pkr.ac.id->nama alias
+	   DocumentRoot /var/www/eo.pkr.ac.id->dokumenroot
+	   <Directory /var/www/eo.pkr.ac.id>
+	   	Options Indexes FollowSymlinks Multiviews
+		  AllowOverride All
+		  Requeire all granted
+	   </Directory>->untuk .htacces, wriwrite,url	  	  		
+	   ErrorLog /var/log/apache2/eo.pkr.ac.id_error.log	->eror log
+	   CustomLog /var/log/apache2/eo.pkr.ac.id_access.log combined->constume log
+	</VirtualHost>
+	
+  - aktifkan file configurasi apache: 
+      a2ensite eo.pkr.ac.id.conf 
+  -aktifkan modul rewrite
+     	a2enmod rewrite	
+ 4. restar dan cek status apache
+  
+
+
+# install php
+ 1.cek dulu versi php yang tersedia secara default
+	apt show php
+ 2.jika versi defaultnya tidak sesuai ke inginan kita, kita bisa kita tambahkan repository, bisa dilihat di website,https://launchpad.net/~ondrej/+archive/ubuntu/php
+   . instalkan sofware unutk penambah repository
+	    apt install software-properties-common -y 
+   . instal repsotory yang di iginkan,
+   	  add-apt-repository ppa:ondrej/php
+ 3.install php dan module-module yang di butuhkan 	
+    apt install libapache2-mod-php7.4 php7.4 php7.4-common php7.4-mysql php7.4-curl php7.4-gd php-imagick php7.4-cli php7.4-mbstring php7.4-zip php7.4-bcmath -y	
+ 4.cek versi php
+   php -v 
+ 5.cek module php y terinstall 
+   php -m 
+ 6. buat file info.php pada direktory /var/www/eo.pkr.ac.id
+ 7. tes jalankan di browser, eo.pkr.ac.id/info.php
+
+
+# cara mengedit batas ukuran file upload
+ 1.masuk ke direktory, /etc/php/7.4/apache2/, dan edit php.ini
+ 2.ubah ukuran untuk file, upload_max_filesize = 10m, dan  post_max_size = 10m
+ 3. restart apache2, service apache2 restart
+ 4. cek perubahan pada browser
+
+
+#cara hapus dirktory yang berisi
+	rm -r nama_file
+
+# install database.
+ 1. apt install mariadb-server -y 
+ 2. apt install mysql-server -y
+ 3. enbaled service mysql atau mariadb-> aktif secara otamtasi saat dihidupkan
+	systemctl enable mariadb
+	service enable mysql
+ 4. mysql_secure_installation -> aktivtkan ini sesudah mengintsall mysql-server atau mariadb-server
+ 5. enter curent password for root-> enter saja
+ 6. switch to unix_socket authentication -> isikan y
+ 7. change the root password -> isikan y	
+ 5. remove anonymous user? -> isikan y
+ 6. disallow rool login remotely? -> isikan y
+ 7. remove test database adn acces to it? -> isikan y
+ 8. reload privilege tables now? -> isikan y
+ 
+
+# tes login ke mysql
+ 1. mysql -u root -p
+ 2. buat database
+      CREATE DATABASE tes;
+ 3. daftarkan user baru berdarakan privilages databasenya
+      CREATE USER 'asno'@'localhost' IDENTIFIED BY 'Yupo12345';	
+ 	ket: IDENTIFIED BY 'disidengan pass kita'
+ 4. tambahkan hak akses database,
+      GRANT ALL PRIVILEGES ON tes.* TO 'asno'@'localhost';
+ 5. relod configurasi
+       FLUSH PRIVILEGES;
+ 6. exit mysql
+ 	
+
+#install phpmyadmin
+1. sudo apt-get install phpmyadmin
+2. pilih webserver apache2 
+3. Selanjutnya Anda akan ditanya apakah Anda akan mengonfigurasi database untuk phpMyAdmin dengan dbconfig-common. Pilih Yes dan klik ENTER.
+4. Kemudian Anda akan diminta membuat password baru untuk login phpMyAdmin.
+5 masukan passbaru.
+6 cek dibrowser.
+
+#install SSL LEts untuk apache
+ .lihat panduan pada https://certbot.eff.org/all-instructions
+ .sudo add-apt-repository ppa:certbot/certbot
+ .sudo apt-get install certbot python3-certbot-apache
+
+# generet permintaan ssl
+1. cerbot --apache -d eo.pkr.ac.id -d www.eo.pkr.ac.id
+note, misalkan ada domain baru silahkan generet ulang sslnya.
+2. masukan alamat email.
+3. (A)gree/(C)ancel: -> di isikan A
+4. share email-> di isikan N
+5. pilih no riderect atau rididrect kita pilih  no 2, karena kita pilih rederct. -> isikan 2
+note: jika kita pilih no redirect kita akan seting manual.
+
+
+#seting firelwall
+1. install ip table -> apt install iptables-persistent -y
+2. masukan perintah berikut
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A INPUT -p tcp --dport 50000 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables _A INPUT -p tcp --dport 443 -m conntrack --ststate NEW,ESTABLESHED -j ACCEPT
+iptables -P INPUT DROP
+ket*: port 80 -> ssh
+      port 80 dan 443 adalah htpps
+3. save configurasi
+	netfilter-persistent save
+4 dan relaod
+	netfilter-persistent reload
+5. cek rules iptable
+	iptables -L
+
+# reset ulang iptables
+1. iptables -P INPUT ACCEPT
+2. iptables -F
+
