@@ -35,7 +35,6 @@ ubh chom 700 .ssh, ubh chmod 600 authorized_keys
 	ssh-copy-id -i .ssh/key-namkey user@ipserver
 
 
-
 #agar sshkeynya agar lebih aman lebih atur seprti dibawah
 1.edit file sshd_config, di direktory /etc/ssh/ dan ubah pubkeyAuthentication yes.
 2. dan jika ingin merubah port silahkan ubah port file sshd_config, di direktory /etc/ssh/ 

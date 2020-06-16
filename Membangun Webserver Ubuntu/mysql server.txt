@@ -23,7 +23,7 @@
 #cara exsport database di mysql;
 1. untuk satu tabel-> mysqldump -u namauser -p namadatabase > /direktory_penyimpanan/namadbexsport.sql
 
-#cara exsport database;
+#cara Inpotdatabase;
 1. mysql -u root -p nama_db < /direktory_penyimpanan/namafile.sql
 
 

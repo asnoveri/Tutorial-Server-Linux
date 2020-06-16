@@ -156,6 +156,12 @@
 5 masukan passbaru.
 6 cek dibrowser.
 
+
+# cara upgred versi phpmyadin
+1. sudo add-apt-repository ppa:phpmyadmin/ppa
+2. sudo apt-get update
+3. sudo apt-get install phpmyadmin
+
 #install SSL LEts untuk apache
  .lihat panduan pada https://certbot.eff.org/all-instructions
  .sudo add-apt-repository ppa:certbot/certbot
@@ -193,3 +199,7 @@ ket*: port 80 -> ssh
 1. iptables -P INPUT ACCEPT
 2. iptables -F
 
+#cara mengatifkan service secara otomatis saat server reboot
+. service enable nama service
+#cara mennonaktifkan service secara otomatis saat server reboot
+. service disable nama service

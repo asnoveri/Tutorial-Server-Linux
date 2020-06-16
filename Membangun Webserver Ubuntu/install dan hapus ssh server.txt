@@ -21,4 +21,29 @@
 
 # install ssh client
  1. sudo apt install openssh-client =>untuk di linux
-    
+
+
+
+# cara mengirimkan file dari client ke serever dengan scp 
+  . scp -r -P 50000 \disposisi  asno@127.0.0.1:/var/www/htm/  
+  . scp -r -P 50000 /disposisi  asno@127.0.0.1:/var/www/htm/   
+ # Perintah yang bisa digunakan pada scp
+  . -P -> Port yang di gunakan pada ssh serevr
+	ex. -p 50000
+  . -q	-> akan menjalankan operasi dalam “mode senyap” , yang mana hanya critical error saja yang akan ditampilkan.
+  . -r untuk melakukan proses recursive copying, di mana semua subdirectory akan dimasukkan.
+  . -p akan menyimpan file yang dimodifikasi dan waktu akses.
+  . -u akan menghapus source file setelah proses pemindahan file selesai.
+  . -c akan mengaktifkan kompresi data selagi proses transfer berlangsung.
+
+
+# cara unduh file dari server ke pc client
+ .scp -r -P 50000 asno@127.0.0.1:/home/asno/asno.txt D:\
+
+# cara kirim file atau folder dri pc client(windows) ke server linux
+	.pscp -r Backup_website_pmb root@103.16.133.245:/root/
+
+#cara download data dari server linux ke pc client (windows)
+	. pscp root@103.16.133.245:/usr/db_backup_pmb2020_6_11.sql ./
+	. pscp root@103.16.133.245:/usr/db_backup_pmb2020_6_11.sql ./namafolder/
+note* tambahkan -r untuk mengrim folder
