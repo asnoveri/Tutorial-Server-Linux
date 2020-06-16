@@ -3,6 +3,7 @@
  1. akses file berikut
 	.ubuntu server 16.04 /etc/network/interfaces
 	.ubuntu server 18.04 /etc/netplan/50-cloud-init.yaml
+	note*: jika file 50-cloud-init.yaml tidak ada, buat filenya dan compikan configurasi dibawah kedalam filenya 
  2. masukan konfigurasi berikut
   .configurasi untuk dhcp/ ip dinamis	
 	network:
@@ -31,6 +32,7 @@
    . netplan apply	
    . netplan --debug apply
    . service network-manager restart	
+   note: jika netwokr-manger :unrecognized service, intsal dulu network managernya =>sudo apt-get install network-manager
 
 # install ssh
 

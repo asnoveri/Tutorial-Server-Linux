@@ -1,0 +1,8 @@
+1.akses sshd_config , untuk configurasi ssh 
+    nano /etc/ssh/sshd_config
+2. cari PermitRootLogin yes
+   didalam file sshd_config, jika ditemukan ubah yes menjadi no, agar root tidak kases server via ssh
+3. PermitRootLogin no
+4. cari PermitEmptyPasswords,
+  jika di temukan ubah yes menjadi no, agar user tidak login tanpa password
+5.setelah itu restart ssh server 
