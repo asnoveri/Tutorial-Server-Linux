@@ -107,7 +107,9 @@
  5.cek module php y terinstall 
    php -m 
  6. buat file info.php pada direktory /var/www/eo.pkr.ac.id
- 7. tes jalankan di browser, eo.pkr.ac.id/info.php
+ 7. tes jalankan di browser, eo.pkr.ac.id/phpinfo.php
+ 	dan isikan script berikut :
+		<?php phpinfo();?>
 
 
 # cara mengedit batas ukuran file upload
