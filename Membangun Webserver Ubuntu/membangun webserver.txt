@@ -160,6 +160,16 @@
 5 masukan passbaru.
 6 cek dibrowser.
 
+	note* = jika muncul pesan eror dibawah ini pada phpmyadmin 
+	1. => 	Warning in ./libraries/sql.lib.php#613 
+	  	count(): Parameter must be an array or an object that implements Countable.
+		cara mengatasinya yaitu
+		Edit filenya: '/usr/share/phpmyadmin/libraries/sql.lib.php'
+        	ganti ini: (count($analyzed_sql_results['select_expr'] == 1)
+        	dengan ini:  ((count($analyzed_sql_results['select_expr']) == 1)
+
+	2. => 	Notice in ./libraries/DisplayResults.php#1229 Trying to access array offset on value of type bool #15800
+		cara mengatasinya yaitu lakukan update phpmyadmin dengan cara seperti di bawah
 
 # cara upgred versi phpmyadin
 1. sudo add-apt-repository ppa:phpmyadmin/ppa
