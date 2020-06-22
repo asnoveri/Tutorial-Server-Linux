@@ -217,3 +217,30 @@ ket*: port 80 -> ssh
 . service enable nama service
 #cara mennonaktifkan service secara otomatis saat server reboot
 . service disable nama service
+
+
+
+note*: jika muncul pesan eror spereti berikut:
+Not Found
+The requested URL was not found on this server.
+Apache/2.4.29 (Ubuntu) Server at localhost Port 80
+
+cara mengatasinya yaitu:
+  1. akses file /etc/apache2/
+  2. lalu edit apache2.conf
+  3. cari tulisan berikut
+  	<Directory /var/www/>
+   		Options Indexes FollowSymLinks
+   		AllowOverride none
+   		Require all granted
+	</Directory>
+  4. ubah tulisan di atas menjadi berikut
+  	<Directory /var/www/>
+   		Options Indexes FollowSymLinks
+   		AllowOverride All
+   		Require all granted
+	</Directory>
+  5. restar apache2
+  6. sudo a2enmod rewrite
+  7. restart apache2
+  	
