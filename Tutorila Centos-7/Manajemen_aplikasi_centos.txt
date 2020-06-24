@@ -1,0 +1,100 @@
+# install aplikasi
+   - yum install nama_aplikasi
+   - yum -y instal nama_aplikasi
+ 	ket: -y ->  digunakan agar sistem melakukan instalasi paket aplikasi yang akan kita install tanpa meminta konfirmasi
+
+
+# hapus aplikasi
+  - yum remove nama_aplikasi
+  - yum -y remove nama_aplikasi
+
+# mencari aplikasi tertentu
+  - yum search nama_aplikasi
+
+# update aplikasi
+  - yum update nama_aplikasi
+
+# update sistem centos
+  - yum update
+
+# mengintsal beberapa buah aplikasi
+  - yum install nama_aplikasi nama_aplikasi2
+
+# mengintsal beberapa aplikasi berdasarkan group
+  - yum groupinstall "Nama Group"
+
+# melihat daftar aplikasi terinstall berdasarkan group
+  - yum grouplist
+
+# Semisal kita akan mencari aplikasi berdasarkan group virtualisasi, maka kita dapat menggunakan perintah grouplist tadi dengan kombinasi pipe dan grep seperti berikut:
+	- yum grouplist | grep Virtual
+	- Virtualization
+	- Virtualization Client
+	- Virtualization Platform
+	- Virtualization Tools
+		
+# menghapus aplikasi berdasarkan group
+  - yum groupremove
+
+# unutk melihat manual yum
+  - man yum
+
+# melihat aplikasi yang terinstall
+  . rpm -qa 
+  . yum list installed
+   	
+# mengintsak repositoty epel
+ . yum install epel-release
+
+
+# DNS
+  dns -> sebuah sistem yang berisi informasi tentang nama hots ataupun nama domain dalam bentuk basis data tersebar didalam jaringan komputer, secara sederhana dn berfungsi menterjemahkan domain menjadi ip dan sebailiknya.
+
+# install dns
+  yum install bind bind-utils -y
+
+# install apache2 
+  1. yum install httpd -y
+
+  2. restart apache dan jalankan mode boot
+     systemctl start httpd.service
+     systemctl enbled httpd service
+
+  3. Untuk memastikan apakah sudah benar, jalankan perintah
+     ps aux | grep httpd
+
+  4. cek versi apache 
+     httpd -V
+     apache2 -V
+     apachectl -V
+
+  5. cek modul apache
+     httpd -M
+
+  6. cek status apache2
+     systemctl status httpd
+
+
+# install Nginx
+  1. intsall repsoitory epel terlebih dahulu, karna nginx tersedia di repository epel
+  2. install Nginx
+	sudo yum install nginx
+  3. star nginx dan enable bootnya
+	systemctl start nginx
+	systemctl enable nginx
+  4. Untuk memastikan apakah sudah benar, jalankan perintah
+     ps aux | grep nginx 
+  5. cek versi nginx
+     nginx -V
+  
+
+# intsall mysql
+  1. download dan install repository mysql
+     wget https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+     rpm -Uvh mysql80-community-release-el7-1.noarch.rpm	  2. install mysql
+     yum install mysql-server
+  3 start mysql
+     systemctl start mysqld
+  4 cek status mysql
+     systemctl status mysqld		
+

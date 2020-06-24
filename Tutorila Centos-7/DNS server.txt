@@ -1,0 +1,260 @@
+# INSTALL DNS SERVER
+  
+   - yum install bind bind-utils -y
+
+   - Ubah konfigurasi dns server (terdapat di file /etc/named.conf)
+      listen-on port 53 { 127.0.0.1; ip_static_server; };
+	ex:listen-on port 53 { 127.0.0.1; 192.168.56.50; };
+      allow-query { localhots; ip_static_server; any; };
+        ex:allow-query { localhots; 192.168.56.50; any; };
+      allow-query-cache { localhost; ip_static_server; any; };  	
+        ex:allow-query-cache { localhost; 192.168.56.50; any; };  	
+
+    - Tambahkan nama zone di paling bawah (terdapat di file /etc/named.conf)
+	zone "asno.net" IN{
+	  type master;
+          file "/var/named/forwad.asno"; 		
+	};
+	
+	zone "56.168.192.in-addr.arpa" IN {
+          type master;
+	  file "/var/named/reverse.asno"	
+	}; 	  		
+     ket: asno.net -> nama domain
+	  forwad.asno -> file akan mengubah domain ke ip
+	  reverse -> file akan mengubah ip ke domain 	
+	  56.168.192 -> alama t ip yang dibalik	
+
+    - buat file forwad.asno di /var/named
+ 	$TTL 86400
+	@	IN	SOA 	asno.net. root.asno.net.(
+				2011071001	;Serial
+				3600		;Refresh
+				1800		;Retry
+				604800		;Expire
+				86400		;Minimum TTl
+	)
+	@ 	IN 	NS	asno.net.
+	@	IN	NS	ns.asno.net.
+	@	IN	A	192.168.56.50
+	ns	IN 	A	192.168.56.50
+	web	IN	A	192.168.56.50
+
+ket: $TTL -> time to live (masa berlaku dari konfigurasi)
+     86400 -> wakru masa berlaku konfigurasi
+     @ IN A ->	ip  dns
+     @ IN Ns -> nama dns server
+     					
+     - buta file reverse.asno di /var/named/
+	$TTL 86400
+	@	IN	SOA 	asno.net. root.asno.net.(
+				2011071001	;Serial
+				3600		;Refresh
+				1800		;Retry
+				604800		;Expire
+				86400		;Minimum TTl
+	)
+	@ 	IN 	NS	asno.net.
+	@	IN	PTR	ns.asno.net.
+	1	IN	PTR	asno.net.
+	1	IN 	PTR	ns.asno.net.
+	1	IN	PTR	web.asno.net.	
+
+   - aktifkas fitur named
+	systemctl enabled named
+	systemctl start named
+   
+   - cek kesalahan
+	journalctl -xe
+   
+   - cek status
+	systemctl status named
+
+   - aktifkan servis firewall	
+	firewall-cmd --permanet --add-port=53/tcp
+	firewall-cmd --permanet --add-port=53/udp
+	firewall-cmd reload	
+	
+    - ubah kepemilikan
+	chgrp named -R /var/named/
+	chown -v root:named /etc/named.conf
+
+    - seting restorecon
+	restorecon -rv /var/named/	
+	restorecon /etc/named.conf		
+    
+    -  mencek domain sudah aktif
+	named-checkconf /etc/named.conf
+	named-checkconf asno.net /etc/named.conf	 
+		
+    - edit resolv.conf di /etc/
+	nameserver 192.168.56.50 -> ip dns
+   
+    - restart network
+	systemctl restart network	
+			
+    - lakukan ns lokup ke ip addres
+	nslookup 192.168.56.50 /nslookup asno.net
+        dan ping ip	
+
+
+
+install DNS server
+DNS server yang digunakan adalah bind.
+
+yum install bind bind-utils -y
+
+yum install bind bind-utils -y
+Konfigurasi DNS server
+Backup terlebih dahulu file konfigurasi named.conf.
+
+cd /etc
+cp named.conf named.conf.backup	
+
+cd /etc
+cp named.conf named.conf.backup	
+Buka file konfigurasi.
+
+nano /etc/named.conf
+
+nano /etc/named.conf
+Ubah atau tambahkan baris kode di bawah ini.
+
+listen-on port 53 { 127.0.0.1; 192.168.56.50; };
+allow-query     { localhost; 192.168.56.50; any; };
+allow-query-cache { localhost; 192.168.56.50; any; };	
+
+listen-on port 53 { 127.0.0.1; 192.168.56.50; };
+allow-query     { localhost; 192.168.56.50; any; };
+allow-query-cache { localhost; 192.168.56.50; any; };	
+Hasilnya seperti pada gambar di bawah ini.
+
+Cara Install dan Setting DNS Server di CentOS 7 pada Jaringan LAN
+
+Kemudian tambahkan zone (nama domain) dan reverse (alamat IP). Pada opsi file adalah nama file konfigurasi, penulisa nama file tidak harus seperti itu.
+
+zone "cloudx.mks" {
+   type master;
+   file "/etc/named/cloudx.mks.zone";
+};
+
+zone "56.168.192.in-addr.arpa" IN {
+   type master;
+   file "/etc/named/56.168.192.rev";
+};
+
+
+zone "cloudx.mks" {
+   type master;
+   file "/etc/named/cloudx.mks.zone";
+};
+ 
+zone "56.168.192.in-addr.arpa" IN {
+   type master;
+   file "/etc/named/56.168.192.rev";
+};
+Hasilnya seperti pada gambar di bawah ini.
+
+Cara Install dan Setting DNS Server di CentOS 7 pada Jaringan LAN
+
+Simpan, keluar dari nano.
+
+Membuat file zone forward.
+
+nano /etc/named/cloudx.mks.zone
+
+nano /etc/named/cloudx.mks.zone
+Isinya adalah konfigurasi zone, berisi nama domain, sub-domain, dan alamat IP web server.
+
+$TTL    86400
+@       IN      SOA     cloudx.mks. root.cloudx.mks. (
+                2018092501      ;Serial
+                3600            ;Refresh
+                1800            ;Retry
+                604800          ;Expire
+                86400           ;Minimum TTL
+)
+
+@       IN      NS      ns1.cloudx.mks.
+@       IN      NS      ns2.cloudx.mks.
+@       IN      A       192.168.56.50
+ns1     IN      A       192.168.56.50
+ns2     IN      A       192.168.56.50
+www     IN      CNAME   cloudx.mks.
+blog    IN      A       192.168.56.50
+
+$TTL    86400
+@       IN      SOA     cloudx.mks. root.cloudx.mks. (
+                2018092501      ;Serial
+                3600            ;Refresh
+                1800            ;Retry
+                604800          ;Expire
+                86400           ;Minimum TTL
+)
+ 
+@       IN      NS      ns1.cloudx.mks.
+@       IN      NS      ns2.cloudx.mks.
+@       IN      A       192.168.56.50
+ns1     IN      A       192.168.56.50
+ns2     IN      A       192.168.56.50
+www     IN      CNAME   cloudx.mks.
+blog    IN      A       192.168.56.50
+Selanjutnya membuat zone reverse.
+
+nano /etc/named/56.168.192.rev
+
+nano /etc/named/56.168.192.rev
+Isinya seperti di bawah ini.
+
+$TTL    86400
+@       IN      SOA     cloudx.mks. root.cloudx.mks. (
+                2018092501      ;Serial
+                3600            ;Refresh
+                1800            ;Retry
+                604800          ;Expire
+                86400           ;Minimum TTL
+)
+
+        IN      NS      ns1.cloudx.mks.
+        IN      NS      ns2.cloudx.mks.
+@       IN      A       192.168.56.50
+ns1     IN      A       192.168.56.50
+ns2     IN      A       192.168.56.50
+50      IN      PTR     cloudx.mks.
+50      IN      PTR     blog.cloudx.mks.
+
+$TTL    86400
+@       IN      SOA     cloudx.mks. root.cloudx.mks. (
+                2018092501      ;Serial
+                3600            ;Refresh
+                1800            ;Retry
+                604800          ;Expire
+                86400           ;Minimum TTL
+)
+ 
+        IN      NS      ns1.cloudx.mks.
+        IN      NS      ns2.cloudx.mks.
+@       IN      A       192.168.56.50
+ns1     IN      A       192.168.56.50
+ns2     IN      A       192.168.56.50
+50      IN      PTR     cloudx.mks.
+50      IN      PTR     blog.cloudx.mks.
+Setelah membuat file zone dan reverse, aktifkan dan restart service named.
+
+systemctl enable named
+systemctl restart named	
+
+systemctl enable named
+systemctl restart named	
+Ubah file DNS resolver
+
+nano /etc/resolv.conf
+
+nano /etc/resolv.conf
+Isinya
+
+search cloudx.mks
+nameserver 192.168.56.50
+
+search cloudx.mks
+nameserver 192.168.56.50

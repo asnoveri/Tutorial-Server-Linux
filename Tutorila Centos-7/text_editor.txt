@@ -1,0 +1,188 @@
+# Instal text editor nano
+  yum install nano 
+   
+# cek versi nano editor
+  nano --version
+
+# Text editor vi
+
+Editor VI memiliki dua mode, yaitu :
+1. Command mode (mode perintah) digunakan untuk memberikan perintah-perintah untuk mengedit teks.
+2. Insert mode (mode penyisipan) digunakan untuk melakukan pengetikan teks.
+
+Pertama kali memulai editor VI, secara default kita menemukan Command mode (mode perintah). Untuk mengaktifkan insert mode kita tinggal mengetikkan huruf i. Bila kita menekan tombol [Escape], maka kita akan kembali ke mode perintah. Selain huruf i kita juga dapat menekan tombol insert.
+
+Untuk memulai Editor VI kita dapat mengetikan perintah :
+
+# > vi namafile.txt
+
+Jika file namafile.txt ditemukan, maka editor akan membuka dokumen tersebut. Tetapi jika tidak ditemukan, maka editor VI akan membuat file baru dengan nama tersebut (namafile.txt) jika disimpan. Untuk itu jangan sampai salah mengetikkan nama sebuah file yang akan diedit.
+
+Perintah-perintah yang berlaku di command mode:
+
+1. Navigasi Cursor
+
+l , panah kanan atau spasi : untuk bergeser ke kanan 1 karakter
+h atau panah kiri : untuk bergeser ke kiri 1 karakter
+j atau panah bawah : untuk bergeser ke bawah 1 baris
+k atau panah atas : untuk bergeser ke atas 1 baris
+:0 atau 1-Shift-G : untuk berpindah ke baris pertama
+:$ : untuk berpindah ke baris terakhir
+nG : untuk berpindah ke baris ke n
+0 : untuk berpindah Awal baris
+$ : untuk berpindah Akhir baris
+^F : berpindah satu layar penuh ke bawah.
+^B : berpindah satu layar penuh ke atas.
+^D : berpindah setengah layar ke bawah.
+^U : berpindah setengah layar ke atas.
+^w : berpindah satu kata ke depan.
+^b : berpindah satu kata ke belakang.
+
+Tanda ^ adalah tanda tombol Ctrl, ^F artinya anda harus menekan tombol Ctrl bersamaan dengan tombol F.
+
+2. Menghapus Text
+
+x : digunakan untuk menghapus satu karakter pada posisi kursor
+X : digunakan untuk menghapus satu karakter pada sebelah kiri posisi kursor
+dw : digunakan untuk menghapus 1 kata pada posisi sebelah kanan kursor
+db : digunakan untuk menghapus 1 kata pada posisi sebelah kiri kursor
+dd : digunakan untuk menghapus 1 baris pada posisi kursor
+d [Enter] : untuk menghapus dua baris, baris pada posisi kursor dan baris berikutnya
+d0 : untuk menghapus dari awal baris sampai tepat sebelum posisi kursor
+dL : untuk menghapus dari posisi kursor sampai akhir tampilan pada layar
+d$ : digunakan untuk menghapus dari posisi kursor sampai akhir baris
+dG : digunakan untuk menghapus dari posisi kursor sampai akhir baris pada file
+d^ : Menghapus dari posisi kursor sampai awal baris dari file
+3dd : Menghapus tiga baris dari posisi kursor kebawah
+
+3. Copy dan Paste Text
+
+Untuk melakukan perintah copy dan paste kita harus memperhatikan langkah-langkah berikut :
+
+Tempatkan kursor pada posisi baris yang akan dicopy.
+
+Contoh jika ingin copy 5 baris, gunakan command 5yy ( tekan angka 5 diikuti tombol y sebanyak 2x)
+
+Kemudian tempatkan posisi kursor pada tempat yang akan di insert-kan dan kemudian tekan p untuk paste.
+
+yy : untuk meng-copy satu baris
+yw : untuk meng-copy 1 kata pada posisi sebelah kanan kursor
+yb : untuk meng-copy 1 kata pada posisi sebelah kiri kursor
+y0 : untuk meng-copy dari awal baris sampai tepat sebelum posisi kursor
+yL : untuk meng-copy dari posisi kursor sampai akhir tampilan pada layar
+y$ : untuk meng-copy dari posisi kursor sampai akhir baris
+yG : untuk meng-copy dari posisi kursor sampai akhir baris pada file
+y) : untuk meng-copy dari posisi kursor ke awal kalimat
+y( : untuk meng-copy dari posisi kursor ke akhir kalimat
+
+p : untuk mempaste teks
+
+Contoh : perintah 3yw artinya : meng-copy 3 kata dari sebelah kanan kursor
+
+4. Memindahkan Text
+
+Untuk memindahkan teks kita dapat mengikuti langkah-langkah berikut :
+
+Tempatkan kursor pada posisi baris yang akan di-cut.
+
+Contoh jika ingin memindahkan 5 baris, gunakan command 5dd ( tekan angka 5 diikuti tombol d sebanyak 2x)
+
+Kemudian tempatkan posisi kursor pada tempat yang baru dan kemudian tekan p untuk paste.
+
+5. Membatalkan Perubahan
+Jika kita melakukan kesalahan ketik atau menghapus tanpa sengaja, kita dapat memperbaikinya dengan menggunakan perintah u atau U.
+
+Perintah u digunakan untuk membatalkan perubahan terakhir yang dilakukan oleh pemakai
+
+Perintah U digunakan untuk membatalkan seluruh perubahan pada satu baris.
+
+6. Mencari String dan Karakter
+
+Editor VI dapat melakukan pencarian terhadap string dan karakter. Untuk pencarian string, perintah yang digunakan adalah perintah / dan ?. Pada saat kedua perintah ini digunakan, perintah yang diketikkan akan muncul dibagian bawah layar, tempat kita mengetikkan string yang ingin dicari.
+
+Contoh : Misalnya kita ingin mencari kata <VirtualHost>, kita tinggal mengetikkan perintah /<VirtualHost>.
+
+Apa perbedaan antara / dan ? Prinsip Kedua perintah sebenarnya sama, yang berbeda hanya pada arah pencarian yang akan dilakukan. Perintah / mencari ke arah bawah, sedangkan perintah ? mencari ke arah atas dari file.
+
+Perintah n dan N digunakan untuk melanjutkan proses pencarian yang sebelumnya. Perintah n akan mencari dalam arah yang sama, sedangkan perintah N akan mencari dalam arah yang berlawanan. Untuk melakukan pencarian suatu kata tertentu, bisa digunakan command seperti contoh berikut :
+
+/\<host\>
+
+artinya perintah ini hanya akan mencari string dengan nilai host saja, kata virtualhost akan diabaikan.
+
+7. Keluar dari Editor VI
+
+Untuk bisa keluar dari VI maka anda harus masuk ke command mode dahulu dengan menekan tombol ESC pada keyboard atau bisa juga dengan menekan “Control + [” . Nah setelah berada dalam COMMAND MODE ketik :q untuk keluar dari VIM tanpa save , bila file yang dibuka sudah dimodifikasi oleh anda maka VIM tidak akan mengizinkan anda keluar dan untuk mengabaikan peringatan ini maka itu gunakan :q! untuk keluar dari VIM dan mengabaikan segala perubahan pada file tersebut.
+
+8. Menyimpan pekerjaan
+
+Kalo ingin save file yang sudah di rubah, cukup ketikkan :w lalu tekan enter. Jika ingin save file yang sedang dibuka dengan nama lain maka ketik :w namafile_baru dan tekan enter maka file tersebut akan disave menjadi namafile_baru.
+
+9. Perintah Tambahan Lainnya
+
+Masih banyak perintah Editor VI yang bisa digunakan, diantaranya :
+
+:r nama_file : adalah command untuk menyisipkan isi file namafile kedalam file yang sedang kita buka
+
+:q : digunakan untuk keluar dari Editor VI
+
+:w : digunakan untuk menyimpan file
+
+:!ls : digunakan me-list isi current directory saat itu (tanpa keluar dari editor VI). Untuk kembali ke editor VI, tekan Enter.
+
+:sh : adalah command untuk meninggalkan editor VI untuk sementara untuk melakukan beberapa perintah lain pada shell. Gunakan ctrl-d untuk kembali ke editor VI.
+
+#editor vim
+ - install vim
+	yum install vim
+ - bukak file dengan vim
+	vim namafile
+ - keluar dari text editor
+	1. tekan esc
+	2. masukan :w -> simpan
+	3. masukan :wq -> keluar simpan
+	4. masukan :q -> keluar tanpa simpan
+
+ - Menulis Text
+	i : Memulai menulis, modus (INSERT)
+	o : Memulai menulis, modus (INSERT) dan menambahkan baris kosong dibawah kursor
+	O : Memulai menulis, modus (INSERT) dan menambahkan baris kosong diatas kursor
+
+
+ - Menghapus Text
+	x  : Menghapus karakter yang terdapat di kursor
+	X : Menghapus karakter sebelum kursor
+	dd : Mengapus satu baris
+	D : Menghapus mulai dari awal kursor
+
+ - Berpindah Text
+	h : Berpidah satu karakter ke kiri
+	j : Berpidah satu karakter ke bawah
+	k : Berpidah satu karakter ke atas
+	l : Berpidah satu karakter ke kanan
+	w : Maju satu kata (berikutnya)
+	b : Mundur satu kata (sebelumnya)
+
+ -Pembatalan
+	u : Pembatalkan penghapusan (undo)
+	U : Pembatalkan penghapusan semua dalam satu line (undo)
+	crtl + r : Mengembalikan penghapusan (redo)
+
+ - Perintah Akhir
+	:wq : Menyimpan file dan keluar
+	:q : Keluar dari editor
+	:q! : Keluar dari aplikasi editor tanpa menyimpang file
+	:w : Menyimpang text yang sudah ditulis
+
+ - Pencarian Text
+	/kata_yang_ingin_dicari
+	n : untuk Next
+	N : untuk kembali
+
+
+# Beda vi dan vim
+ - vim mendukun bahasa pemograman (c, c++, python, perl, shell), sedangkan vi tidak
+ - vim dapat digunakan mengedit file portokol jaringan ssh dan http
+ - vim dapat memisah kan layar untuk mengedit banyak file.
+ - vim bisa edit file arsip terkompresi (gzip, zip, tar,dll)
+ 

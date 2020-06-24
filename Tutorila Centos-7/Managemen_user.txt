@@ -1,0 +1,86 @@
+Manajemen user
+
+ 
+. daftar configurasi file linux terdapat pada file   /etc/passwd, yang mengandung informasi seperti nama user, password, UID, GID, home directory dan shell
+
+bisa dilihat pada file paswwd terdapt text seperti berikut:
+root:x:0:0:root:/root/bin/bash
+ket=  - root -> nama user
+      - x -> password yang sudah di enkripsi dan di simpan 	      	     pada file /etc/shadow
+      - 0 -> user id
+      - 0 -> user group id
+      - root -> berisi nama lengkap user, alamat, telepon,dll
+      - /root -> direktory kerja user secara default ketika 		user login ke sistem
+      - /bin/bash/ -> jenis shell yang dijalankan saat user 	login		
+
+. Hapus User
+ 	- userdel --remove namauser
+		menghpus user dan direktorykerjanya
+	- userdel namauser
+		menghapus user saja
+
+.cara membuat user
+ 1. adduser namauser
+ 2. useradd namauser
+ 3. useradd -d /home/namadirektory user1
+	membuat user dengan direktory tertentu
+	-d -> sebagai parameter u direktory yang akan di buat
+ 4. menabmbhkan password pada user tertentu
+	passwd user1 	
+ 5. useradd -u 27 -g 27 namauser
+	. u -> perintah untuk membuat user id
+	. g -> perintah untuk membuat group id
+ 6. useradd -G namagroup1,namagroup2 username
+	membuat user dalam beberapa group sekaligus,
+ 7. useradd -M username
+	membuat user tanpa membuat folder kerja, tambahkan -M 	untuk membuat user tanpa folder kerja 	
+ 8. useradd -e 2018-04-27 username
+	membuat waktu aktif user dengan berdasarkan tanggal 	tertentu, tambhkan parameter -e dan format tanggal 	YYYY-MM-DD , untuk masa aktif user
+ 9. useradd -f 27 username
+	membuat user dengan mentukan pergantian password 		maksimal 27 hari setalh user di buat.
+ 10. useradd -c "ini contoh user dengan komentar" username
+	membuat user dengan komentar, tambahakna parameter -c 	untuk menambhakan komentar
+ 11. Membuat User Dengan Spesifikasi Kompleks
+	Contoh pertama adalah membuat user dengan nama 	monitorteknologi dengan direktori 	/home/monitorteknologi dengan shell bash, UID 27, GID 	27, dilengkapi dengan komentar.
+	ex:root@Linux-Server:~# useradd -d 		   /home/monitorteknologi -s /bin/bash -u 27 -g 27 -c 	   “Ini user dengan spesifikasi tertentu” user1	
+ 12. Menghapus User Dengan userdel
+	File konfigurasi ketika menggunakan perintah userdel 	berada 	di /etc/login.defs. Opsi -f akan menghapus 	user meskipun 	sedang dalam kondisi terkoneksi 	dengan sistem.
+	ex: root@Linux-Server:~# userdel -f user1
+ 13. Menghapus User Dengan deluser
+	Perintah deluser memiliki konfigurasi pada file 	/etc/deluser.conf. Ketika mengeksekusi perintah 	tersebut, maka direktori home, mail, dan file yang 	pernah dibuat tidak secara otomatis terhapus. Namun, 	kalian dapat menambahkan beberapa opsi parameter 	sebagai berikut:
+
+    -backup = digunakan untuk mencadangkan semua file 	milik 	user yang dihapus.
+    -backup-to = digunakan untuk mencadangkan semua file 		user pada lokasi terntentu.
+    -remove-home = untuk menghapus direktori user
+    -remove-all-file = untuk menghapus keanggotaan user 		dalam group tertentu.
+    -group = untuk menghapus keanggotaan user dalam grup 		terntentu.
+    -system = untuk menghapus keanggotaan user dalam grup 		tertentu.
+    -conf = untuk menghapus user berdasarkan konfigurasi 		file /etc/deluser.conf dan /etc/adduser.conf.
+
+
+
+. manajemen group
+   lokasi penyimpanan group terdapt pada file /etc/group
+ 1. Membuat Group
+	addgroup grup1 atau groupadd namagrup
+ 2. Mengahapus Group
+	delgroup group1 atau 
+
+. menambahkan user ke grup
+  1. usermod -aG nama_grup namauser
+
+. menambahkan bebrapa group ke satu user
+  sermod -a -G group1, group2, group3 username
+
+.menambhkan user biasa ke group root(whell)
+  gpasswd -a namauser wheel    		
+
+Ada beberapa perintah berguna yang akan membantu Anda dalam mencantumkan grup, mencari tahu kelompok mana yang ditugaskan ke pengguna. Beberapa di antaranya tercantum di bawah ini.
+
+1. "grup getent" - Perintah ini digunakan untuk mencantumkan semua grup dalam sistem operasi.
+
+2. "groups" - Perintah ini digunakan untuk melihat semua grup yang ditugaskan nama pengguna. (Sintaks: "nama grup")
+
+3. "id" - Anda juga dapat melihat ID numerik yang terkait dengan masing-masing grup dengan menjalankan perintah id dan menentukan nama pengguna. (Sintaks: "nama pengguna id")
+
+Ini adalah beberapa perintah yang membantu menambahkan pengguna ke grup di sistem operasi CentOS. Sebaiknya Anda melalui halaman manual dari perintah ini untuk mendapatkan pemahaman rinci tentang semua variannya.

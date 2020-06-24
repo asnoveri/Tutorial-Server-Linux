@@ -1,0 +1,86 @@
+
+Bagi Anda yang bingung dengan apa itu CentOS? DomaiNesia akan menjelaskan tentang pengertian, sejarah, beserta kelebihan dan kekurangan dari CentOS. Sebelum menjelaskan inti dari Centos, Anda wajib mengetahui terlebih dahulu tentang keberadaan CentOS dan fungsinya.
+
+apa itu centos
+Logo CentOS
+CentOS (Community Enterprise Operating System) adalah Distro Linux yang cocok dipakai dalam skala Enterprise atau skala perusahaan yang bebas biaya atau Gratis. CentOS sendiri di code dari source code Red Hat Enterprise (RHEL) yang dikembangkan dalam sebuah komunitas yang disebut CentOS Project.
+
+CentOS bisa diunduh di ftp://mirrors.kernel.org/redhat/redhat/linux/enterprise. Software ini dirilis di bawah General Public License (GPL) dan nantinya dikembangkan oleh komunitas yang disebut CentOS Project.
+Untuk detailnya Anda bisa membuka di Website http://www.centos.org.
+
+CentOS saat ini sudah dipakai di seluruh dunia, banyak komunitas, mailing list, IRC dan website tutorial sudah tersebar diseluruh dunia supaya semua pengguna dapat mempelajarinya secara gratis. Sehingga untuk suport tentang bagaimana cara membuat sebuah server dengan distro ini Anda tidak perlu lagi kebingungan, karena sudah ada pengguna yang tersebar di seluruh dunia dan aktif di komunitas yang siap untuk membantu Anda.
+
+Sejarah CentOS
+Keberadaan CentOS saat ini yaitu untuk menyediakan platform komputasi skala perusahan secara gratis atau bisa disebut dengan open source, serta centos berusaha untuk mempertahankan 100% kompatibilitas terhadap sumber pusat (Red Hat Linux).
+
+RHL (Red Hat Linux) Awalannya disebut sebagai Red Hat Commercial Linux  yang merupakan distro linux pertama yang memakai system RPM Package Manager, selanjutnya diikuti sebagian perusahaan lain, seperti Mandriva Linux serta SUSE Linux.
+
+CentOS tidak lain dan tidak bukan merupakan kloningan dari RHEL. Dimana RHEL merupakan produk dari Red Hat Linux yang pada prinsipnya hanya dilindungi aturan merek dagang, sehingga bisa membuat produk yang sukses di pasaran.
+
+Sejarah CentOS dimulai pada tahun 1993 oleh Bob Young membangun ACC Corporation, awalnya perusahaan ini menjual aksesories software Linux serta UNIX. Lalu pada tahun 1994 Marc Ewing membuat OS Linux sendiri, yang diberi nama Red Hat Linux.
+
+Akhirnya Ewing meluncurkannya produknya pada Oktober tahun yang sama, yang dikenal dengan rilis Halloween. Bisnisnya pun semakin besar ketika Bob Young membeli bisnis Ewing pada tahun 1995, dan keduanya bergabung menjadi Red Hat Software, dengan Young menjabat sebagai CEO dari Red Hat Software.
+
+apa itu centos
+apa itu centos
+Perbedaan dari CentOS Dan RED HAT LINUX
+Perlu Anda ketahui bahwa nama Red Hat melambangkan dari sistem operasi Linux, sebab sudah terkenal di seluruh dunia sebagai perusahaan Linux sejak awal.
+
+Red Hat Inc adalah pilihan pertama dalam sistem operasi open source profesional dan masih menjadi lead market di masa depan. Sampai pada waktunya Red Hat Linux (RHL) produksinya dihentikan pada tahun 2004.
+
+Mulai dari tahun 2003, Red Hat .inc sudah menghentikan produksi (RHEL) Red Hat, dan menggantinya dengan Red Hat Enterprise Linux (RHEL) yang nantinya pemakainya untuk kepentingan corporate/ perusahaan (berbayar), dan ada pula OS Fedora (yang di kembangkan oleh orang-orang dengan support Fedora Project dan masih disponsori oleh Red Hat) dengan sistem gratis untuk lingkungan rumahan.
+
+Terakhir produksi RHEL adalah sistem operasi Red Hat Linux 9, merupakan OS yang launching paling akhir  dengan cara resmi setelah tanggal 30 April 2004, meskipun untuk supportnya masih dalam sistem Fedora Legacy sampai awal 2007
+
+apa itu centos
+apa itu centos
+Linux Secara Global
+Linux adalah sebuah system operasi yang memiliki kemampuan multiuser dan multi tasking yang bersifat bebas untuk siapapun.
+
+Bebas disini bukan diartikan sebagai gratis, melainkan berarti kebebasan seperti lisensi yang dimiliki oleh linux yaitu GNU GPL (GNU is not unlix general public licence). Yaitu, perangkat lunak yang memiliki lisensi GNU GPL akan menjamin 3 kebebasan bagi para pemakainya diantaranya adalah :
+a. Bebas untuk menggunakan software untuk tujuan apapun.
+b. Bebas untuk mengubah software agar sesuai dengan kebutuhan user. Cara ini mengharuskan prasyarat tersediannya source code perangkat lunak Linux.
+c. Bebas untuk mendistribusikan dengan bentuk copy, baik secara gratis maupun berbayar. Sebagai system dalam rumpun UNIX, GNU.
+
+dibawah ini merupakan beberapa distributor linux, yaitu:
+a. Redhat linux
+b. Mandrake linux
+c. Caldera open linux
+d. Suse linux
+e. Slackware linux
+f. Debian GNU/linux
+g. Turbolinux
+h. Centos
+i. Ubuntu dll.
+
+Ada 2 alasan kenapa Anda harus memilih CentOS sebagai sistem operasi utama sebuah private server. Dalam hal suport, CentOS memiliki suport yang lebih bagus, selain itu Anda tidak perlu kebingungan dengan suport software paket untuk update, karena jika Anda mengunakan sebuah OS commercial, maka Anda harus membayar sangat banyak terlebih dahulu agar bisa memperoleh update yang terkini, berbeda dengan CentOS ini, dimana CentOS Project akab memberikan support produknya secara berkala kepada Anda. Jika Anda berkeinginan membayar karena rasa terima kasih, Anda tetap bisa membayar pada pihak CentOS, tetapi hal ini tidak wajib.
+
+Namun dalam sistem upgrade Linux bukanlah perkara yang gampang, biasanya proses upgrade adalah pergantian software, yaitu dimana software yang lama diganti dengan software yang terbaru.
+
+Sehingga menimbulkan aplikasi yang lama tidak support dengan aplikasi yang terbaru setelah di update, biasanya terjadi crash di aplikasi.
+
+Setelah upgrade software yang terbaru, biasanya memiliki dampak perubahan signifikan yang berbeda dengan versi sebelumnya. Jika Anda memiliki sebuah server yang harus aktif 24 jam maka server Anda harus meminimalisir waktu downtime.
+
+Tetapi pada dasarnya proses upgrade sistem akan merubah semua software menjadi sistem yang terbaru dan tidak peduli dengan konfigurasi lama Anda, oleh sebab itu Anda harus menulis ulang source code lama dan melakukan pengetesan semua konfigurasi, hal ini dilakukan untuk memastikan supaya server Anda dapat berjalan dengan baik, hal ini adalah termasuk pekerjaan besar dan dapat menyebakan downtime pada server yang cukup lama.
+
+Kabar baiknya adalah CentOS dapat mencegah semua permasalah diatas, sebab release pada CentOS memilik kesamaan dengan versi sebelumnya hingga beberapa tahun, sehingga CentOS memiliki waktu dukungan secara berkala dari 5 tahun sampai dengan 10 tahun.
+
+Kekurangan Dan Kelebihan CentOS.
+KELEBIHAN CENTOS :
+
+CentOS Sangat cocok dan copetibel dengan Red Hat, yang merupakan sistem operasi yang sangat handal untuk perusahaan bersekala enterprise dan Red Hat merupakan sistem operasi yang didukung resmi oleh CPanel Drivers • Mudah untuk maintanance
+• Sangat cocok untuk digunakan jangka panjang, terutama untuk lingkungan produksi bukan eksperimental dan lainnya
+• Mudah dipakai dalam paket software dan para pengguna
+• Terdapat support jangka panjang dari para developernya
+• Komunitas pengembangan yang aktif
+• Infrastruktur berbasis komunitas
+• Sistem management yang terbuka
+
+KEKURANGAN CENTOS
+
+•Semua integrasi sangat tergantung pada distro Red Hat. Sebab CentOS selalu keluar setelah Red Hat
+•Kurangnya dokumentasi mengenai centos
+•Karena Centos dibangun berdasarkan Red hat maka segala kelebihan dan kekurangan Red hat juga menjadi bagian dari centos.
+•Kata “Enterprise” membuat pemula takut dan memilih CenOS.
+•Penampilan website CentOS yang kurang menarik (CentOS Indonesia sedang mengupayakan untuk mengupdate website CentOS.org agar tampil menarik.
+•Kurangnya dokumentasi mengenai CentOS secara khusus.

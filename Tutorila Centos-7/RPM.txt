@@ -1,0 +1,48 @@
+RPM
+Penggunaan perintah RPM pada sistem operasi linux
+Logo Redhat Package Manager
+Logo Redhat Package Manager
+Penggunaan perintah RPM (Redhat Package Manager) pada sistem operasi linux memiliki banyak fungsi karena RPM adalah kunci untuk dapat berinteraksi dengan aplikasi yang tersedia pada sistem operasi berbasis linux ini. RPM adalah sebuah tool open source yang sangat populer dikalangan pengguna sistem operasi linux dimana biasanya digunakan untuk melakukan instalasi, update, menghapus instalasi, melakukan query pada paket aplikasi serta melakukan verifikasi terhadap paket aplikasi berbasis rpm ini. File aplikasi yang biasanya memiliki ekstensi .rpm ini merupakan aplikasi yang sudah tercompile dengan baik dan siap untuk digunakan, tetapi biasanya masih memerlukan beberapa library tambahan karena aplikasi pada linux biasanya juga tergantung dengan library aplikasi lainnya atau biasanya disebut dengan istilah dependency.
+
+Beberapa fakta mengenai RPM adalah sebagai berikut :
+
+RPM ini gratis dan memiliki hak cipta dibawah GPL (General Public Licence)
+RPM menyimpan informasi semua paketnya di dalam direktori /var/lib/rpm
+RPM adalah satu satunya cara untuk melakukan instalasi pada sistem operasi linux, jika anda menggunakan paket instalasi murni atau source code maka rpm tidak akan dapat digunakan.
+RPM hanya bisa digunakan untuk file berekstensi .rpm yang memiliki informasi tentang paket apa, dari mana, informasi dependensi, versi dan informasi lainnya.
+RPM hanya memiliki fungi berikut ini :
+
+Install : melakukan instalasi paket
+Remove : melakukan penghapusan instalasi paket
+Upgrade : melakukan upgrade paket
+Verify : melakukan verifikasi paket
+Query : melakukan penelusuran terhadap paket
+Redhat Package Manager
+Redhat Package Manager
+Berikut ini adalah beberapa perintah yang menggunakan RPM
+
+Untuk melakukan verifikasi paket menggunakan perintah : rpm –checksig <namafile>.rpm
+Untuk melakukan instalasi paket menggunakan perintah : rpm -ivh <nama file>.rpm
+Untuk melakukan pengecekan dependensi paket : rpm qpR <nama file>.rpm
+Untuk melakukan instalasi dengan tidak memperhatikan dependensi paket : rpm -ivh –nodeps <nama file>.rpm
+Untuk melakukan pengecekan terhadap paket yang sudah terinstall pada sistem : rpm -q <nama file>
+Untuk melakukan list pada paket : rpm -ql <nama file>
+Untuk melakukan pengecekan paket yang terakhir di install : rpm -qa –last
+Untuk mengetahui paket apa saja yang sudah terinstall pada sistem : rpm -qa
+Untuk melakukan upgrade paket : rpm -Uvh <nama file>.rpm
+Untuk melakukan penghapusan paket : rpm -evv <nama paket>
+Untuk melakukan penghapusan paket dengan mengabaikan dependensi : rpm -ev –nodeps <nama paket>
+Untuk mengecek file ini milik paket apa : rpm -qf <nama path file> contoh : rpm -qf /usr/bin/htpasswd
+Untuk melakukan query informasi pada paket rpm : rpm -qi <nama paket>
+Untuk mendapatkan informasi paket rpm sebelum mekakukan instalasi : rpm -qip <nama file>.rpm
+Untuk mengetahui paket dokumentasi yang disertakan pada sebuah paket rpm : rpm -qdf <path paket> contoh : rpm -qdf /usr/bin/vmstat
+Untuk melakukan verifikasi kesahihan paket : rpm -Vp <nama file>.rpm
+Untuk melakukan verifikasi semua file paket : rpm -Va
+Untuk melakukan import PGP Key : rpm –import <path file> contoh : rpm –import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+Untuk melihat semua PGP Key yang sudah diimport kedalam sistem : rpm -qa gpg-pubkey*
+Untuk melakukan rebuild paket RPM database yang korupt
+cd /var/lib
+rm __db*
+rpm –rebuilddb
+rpmdb_verify Packages
+Semua Penggunaan perintah RPM pada sistem operasi linux ini sangat mudah dipelajari dan harus dikuasai oleh seorang pemula system administrasi sebuah server berbasis linux.

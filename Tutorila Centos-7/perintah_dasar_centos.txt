@@ -1,0 +1,178 @@
+Perintah Dasar Centos
+
+. Privilage centos
+	# -> berarti centos di akses oleh root
+	$ -> berarti centos di akses oleh user biasa
+
+. Menambahkan user
+   adduser namauser
+. Membuat password untuk user baru
+   passwd namauser
+. masuk sebagai user biasa (dari root masuk ke user tertentu)
+  su nama user
+. masuk sebagai root (user biasa megakses serever sebagai root)
+  su , su -p, su -, su -l
+
+
+. Mebuat file atau direktory baru
+  mkdir namadirektory
+
+. Pindah direktory
+  cd /nama_direktory
+
+. melihat isi direktory
+    - ls
+	menampilkan file atau direktori. Jika tulisan 	berwarna biru maka direktori, jika hitam maka file.
+ 
+    -ls -a
+	Menampilkan semua file hingga file yang ter-hidden 		(tersembunyi). File yang tersembunyi memiliki simbol 		“.” pada awalnya. Contoh: “.namaFileTersembunyi”.
+ 
+    -ls -l
+	Menampilkan direktori beserta atributnya
+ 
+    ls -f
+	Menampilkan semua file namun tidak disortir
+ 
+    ls -F
+	Menampilkan file yang di sampingnya ada simbol.
+	Simbol “/”, tanda bahwa file tersebut direktori.
+	Simbol “@”, tanda bahwa file tersebut link.
+	Simbol “*”, tanda bahwa file tersebut executable.
+	Simbol “=”, tanda bahwa file tersebut socket.
+ 
+    ls -R
+	Menampilkan direktori, sub direktori, dan file yang 		ada di dalamnya, baik yang tersembunyi maupun tidak. 		Tentang menampilkan ekspansi percabangan direktori
+
+  . Menghapus direktory
+    - rmdir 
+	menghpus drektory kosong
+    - rm -r namadirektory yang ada isi/
+	menghpus direktory yang berisi
+	
+
+  . Cara melihat yang mana data atau direktory
+	file *
+
+  . Membuat file baru
+    - touch namafile	
+	hanya membuat file tanpa menuliskanisinya
+    - cat>namafile
+	membuat file dengan menuliskan isi secara lansung
+
+ 
+. mencopy file
+   cp nama fileawal namafile baru
+   cp namafileawal /home/
+   cp namafileawal /home/namafilebaru
+
+. menghapus rm
+   rm namafile
+
+. memindahkan file
+   mv namafile /home/
+   mv namafilelama namafilebaru	
+
+. melihat versi centos
+  cat /etc/centos-release
+  	
+. text editor
+   - vi namafile
+	membuka file denga editor
+     cara pengunaan editor vi
+	1.Insert
+	Mengijinkan untuk mengetik, edit sebagaimana biasa.	
+	2.Visual
+	Digunakan untuk seleksi, gandakan, tempel, dsb.
+	3.Normal
+	Digunakan untuk command/beri instruksi.
+   	4. esc
+	untuk kembali ke mode normal
+	5.:q – keluar dan tidak melakukan perubahan. “Shift		+q”
+	6.:q! – keluar dan ‘destroy’ semua perubahan yang 	telah dibuat. “Shift+q+!”
+	7. :wq – write and quit. tulis (simpan) dan keluar. 	“Shift+w+q” 	
+
+. menampilkan daftar paket centos yang sudah terinstal
+	yum list installed
+. menampilkan daftar paket yang tersida pada centos
+	yum list available
+
+. update dan upgrade centos
+	yum update && yum upgrade
+
+. melihat ip
+	ifconfig
+
+. date
+	Menampilkan atau set tanggal dan waktu sistem. 	Selengkapnya “$ man date”.
+
+.reboot
+	Menutup semua aplikasi, keluar sistem, matikan daya 	komputer, load ulang sistem operasi dari awal sesuai 	prosedur dalam satu perintah. Biasa target dari 	reboot ini adalah penyegaran kembali. Entah karena 	beban storage yang sudah terlalu berat dan banyak, 	malfunction system, atau aneka kinerja sistem yang 	kurang normal lainnya.
+
+. poweroff
+	Menutup semua aplikasi, keluar sistem, mematikan daya 	komputer sesuai prosedur.
+
+. who
+	Menampilkan siapa yang sedang log-on
+
+. whoami
+	Menampilkan id pengguna aktif.
+
+. linux cheat sheet
+	Bisa anda ketikkan di google untuk mendapatkan 		command line yang lebih lengkap lagi
+
+. chmod-calculator.com
+	chmod (change mode). Menambah dan mengurangi ijin 	pemakai untuk mengakses file atau direktori.
+
+
+
+. tar -> adalah mengarsipkan beberapa folder menjadi 1
+  macam-macam tar:
+   1. tar
+     tar -cvf namaarsip.tar lokasi/
+	ket: .lokasi -> merupakan direktory yang ingin di 	     	      arsipkan
+	     .c -> membuat arsip baru
+	     .v -> verbose-> untuk melihat prgres pengarsipan
+	     .f -> Penamaan dan penentuan jenis ekstensi 		  file. “namaFile.ekstensi”.	
+   2. tar.gz atau .tgz (yang ini bisa melakukan compresi)
+      tar -cvzf namaarsip.tar.gz lokasi/
+	ket: . z -> merupakan format compresi 	gzip,gunzip,unzip
+   3. tar.bz2 atau .tbz atau tb2 (metode pengarsipan compresi ini menghasilkan compresi yang lebih kecil daripada gz)
+	tar -cvjf namaArsip.tar.bz2 lokasi/
+	ket: j -> merupakan format kompresi, bzip2
+
+ . Extrax tar
+	tar -xvf namaarsip.tar
+	tar -xvzf namaarsip.tar.gz
+	tar -xvjf namaarsip.tar.bz2
+	tar -xvf namaArsip.tar -C lokasiEkstrak/
+	ket*=C – Change to directory. “C”-nya huruf kapital (upper-case) bukan huruf biasa (lower-case). Jadi hasil ekstraksi tidak mutlak pada “$ pwd”, melainkan pada lokasi ekstraksi yang ditentukan user.
+
+  
+  . melihat isi pengarsipan	
+	tar -tvf namaArsip.tar	
+
+  . extrak file gunzip
+	gunzip file.gz
+  
+  . exstrak file.zip
+	unzip file.zip
+	
+
+
+
+. menambahkan ip 
+   - cek ip -> ip aadr show
+   - akses file berikut-> vi /etc/sysconfig/network-scripts/ifcfg-ens18  (ens18 disesuaikan dengan device anda)		
+   - kemudian pada bagian paling bawah tambahkan konfigurasi berikut
+	BOOTPROTO="dhcp" -> ganti menjadi static
+	ONBOOT=no --> ganti menjadi yes
+	IPADDR= [Masukkan ip statis kamu]
+	GATEWAY= [Masukkan gateway default kamu]
+	DNS1= [Masukkan dns 1]
+	DNS2= [Masukkan dns 2]
+
+	perlu diperhatikan IP, Gateway, dan DNS akan bervariasi sesuaikan dengan isp yg kamu gunakan
+   - restart network -> service network restart
+			systemctl restart network
+. update dan upgrade system centos
+	yum update && yum upgrade	

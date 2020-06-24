@@ -1,0 +1,56 @@
+Berikut adalah beberapa definisi direktori yang sesuai standar FHS :
+  1. / -> direktory tertinggi yang disebut sebagai "root".Semua file dan direktori penting lainnya 	  berada dibawah direktori ini, sehingga dalam 	  penulisannya selalu menggunakan tanda “/”  didepannya.
+  2. /bin -> Merupakan direktori file binari berisi 	     perintah-perintah dasar yang dibutuhkan oleh system maupun user untuk dijalankan, misalnya cd (change directory), pwd (print working directory), mv (move, mkdir (make directory), dan sebagainya.
+  3. /boot -> Merupakan direktori yang memuat Linux Kernel dan file lain yang diperlukan pada saat melakukan proses booting sistem terutama saat menerapkan dual-boot.
+  4. /dev -> Merupakan direktori berisi file device dimana perangkat fisik terpasang, seperti Hard drive (/dev/sda), USB drive (dev/sde), Optikal drive, dan perangkat lain yang terpasang pada sistem.
+  5. /etc -> Merupakan direktori yang berisi file konfigurasi yang diperlukan oleh semua program dan juga berisi shell script startup dan shutdown untuk memulai atau menghentikan program individu. Misalnya, /etc/opt sebagai penyimpanan file konfigurasi untuk paket add-on, /etc/sgml sebagai penyimpanan file konfigurasi untuk perangkat lunak yang memproses SGML, /etc/X11 sebagai penyimpanan file konfigurasi untuk X Window System versi 11, /etc/xml sebagai penyimpanan file konfigurasi untuk perangkat lunak yang memproses XML.
+  6. /home -> Merupakan direktori home yang menyimpan data user. Setiap user yang terdaftar, secara otomatis akan dibuat dalam direktori /home yang berisi direktori lain seperti Dekstop, Download, Dokumen dan sebagainya. Sebagai contoh, nama user yang akan kita buat adalah “netsec” maka secara otomatis akan terbentuk direktori /home/netsec.
+  7. /lib -> Merupakan direktori berisi file-file library dari aplikasi yang ada pada sistem. Direktori ini dapat dianggap setara dengan Program Files pada Windows, walaupun tidak sama persis. Setiap program pada Windows membutuhkan library tersendiri untuk diinstal meskipun telah ada untuk program lain, berbeda dengan Linux dimana kadangkala satu file library dapat digunakan oleh beberapa aplikasi secara bersama-sama.
+  8. /media ->	Merupakan direktori yang pada dasarnya digunakan sebagai tempat untuk pemasangan filesystem atau drive lain sementara. Misalnya, /mnt/server sebagai tempat pemasangan untuk server media hard drive.
+  9. /opt -> Merupakan direktori berisi paket aplikasi tambahan untuk sistem yang belum dapat dikelola oleh paket distro yang ada. Misalnya, /opt/arcsight sebagai tempat penyimpanan untuk paket-paket tambahan dari aplikasi ArgSight yang belum dikelola oleh paket distro manajer.
+  10. /proc -> Merupakan direktori proses dimana banyak informasi sistem direpresentasikan sebagai file. Pada dasarnya menyediakan cara untuk kernel Linux dalam mengirim dan menerima informasi dari berbagai proses yang berjalan.
+  11. /run -> Merupakan direktori variabel data run-time yang berisi informasi tentang sistem yang berjalan sejak boot terakhir, misalnya saat log-in pengguna dan menjalankan daemon.
+  12. /sbin -> Merupakan direktori berisi program binari penting yang diperlukan oleh system administrator untuk pemeliharaan, seperti iptables, fdisk, ifconfig, swapon, reboot, fsck, init, rute dan lain-lain.
+  13. /srv -> Merupakan direktori berisi server tertentu dengan layanan file yang terkait, seperti data dan skrip untuk server web, data yang ditawarkan oleh server FTP, dan repositori untuk versi sistem kontrol.
+  14. /sys -> Merupakan direktori berisi informasi tentang perangkat yang terhubung ke sistem dan memungkinkan untuk menyimpan dan memodifikasinya.
+  15. /tmp -> Merupakan direktori temporary sistem yang menyimpan file-file sementara untuk dapat diakses oleh pengguna dan root, sampai boot berikutnya.
+  16. /usr -> Merupakan direktori hirarki sekunder berisi program-program source code yang bisa diakses oleh pengguna. Misalnya, /usr/bin sebagai perintah binari yang sebagian bukan berasal dari OS Linux (at, awk, cc, less, scp), /usr/include sebagai standar untuk memuat file-file header dari bahasa program C dan C++, dan lain-lain.
+  17. /var -> Merupakan direktori variable file berisi informasi proses operasi dari sistem. Seperti, /var/log sebagai direktori yang memuat log dari aplikasi yang berbeda, /var/mail sebagai direktori yang memuat file Mailbox, /var/lock sebagai direktori yang memuat file yang hanya dapat digunakan oleh satu aplikasi saja.
+
+
+
+Tiga jenis penguna yang dapat mengakses file
+1. owner  -> penguna yang membuat dan memiliki file
+2. group  -> grup tertenut yang dapat mengakses file
+3. others -> penguna lain yang dapat mengkases file kecuali owner /group
+ 
+
+simbol hak akses
+owner- group - others
+
+chmod
+- r (read) ->4
+- w (write) ->2
+- x (execute) ->1
+
+
+menganti pemilik file atau folder
+ - chown bambang:clients demo.txt
+	mengubah pemilik dan groupnya 
+ - chown bambang demo.txt
+	untuk mengubah pemiliknya saja
+ - chow :client demo.txt
+	untuk mengubah group nya saja	
+
+
+Langkah 3 – Menggunakan opsi tambahan dengan perintah chmod dan chown
+Salah satu opsi utama yang bisa bekerja dengan kedua perintah tersebut adalah -R, yang artinya rekursif. Opsi ini memungkinkan Anda untuk mengganti permission/owner dalm folder dan SEMUA file dan sub folder di dalamnya.
+
+PENTING! Anda harus berhati-hati dengan opsi ini karena bila salah menggunakannya justru Anda malah mengganti permission/owners dari semua file di dalam sistem Anda. Efeknya akan menimbulkan kesalahan fatal dan Anda akan semakin repot untuk mengembalikan ke kondisi normal.
+
+
+Opsi lain untuk “chmod” dan “chown” adalah:
+“-f” – Akan memaksa eksekusi dan tidak memunculkan banyak pesan error.
+“-v” – Memberikan Anda diagnosa setiap file yang dipengaruhi oleh perintah.
+“-c” – Sama seperti -v, namun hanya akan menyediakan informasi bila perubahan sudah benar-benar terjadi.
+ 
